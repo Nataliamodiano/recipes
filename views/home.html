@@ -1,0 +1,161 @@
+<div class="hero">
+  <div class="overlay">
+    <div class="container">
+      <h1 class="light-font text-center home-header">Search For A Recipe!</h1>
+      <input class="search-input recipe-search" type="text" placeholder="Search for a recipe..." ng-model="search" />
+      <h3 class="light-font text-center">Enter must have ingredients</h3>
+      <h5 class="light-font text-center">Enter as comma separated values (Ex: bacon, brown sugar, etc..)</h5>
+      <input class="search-input recipe-search" type="text" placeholder="Must have ingredients! " ng-model="allowedIngredients" />
+
+      <h3 class="light-font text-center">Allergies and Exclusions</h3>
+      <div class="center-div">
+        <button class="filter-btn" 
+                ng-click="dairy = !dairy" 
+                ng-class="{ 'selected' : dairy , 'notSelected' :  !dairy }">Dairy
+        </button>
+        <button class="filter-btn" 
+                ng-click="eggs = !eggs" 
+                ng-class="{ 'selected' : eggs , 'notSelected' :  !eggs }">Eggs
+        </button>
+        <button class="filter-btn" 
+                ng-click="gluten = !gluten"  
+                ng-class="{ 'selected' : gluten , 'notSelected' :  !gluten }">Gluten
+        </button>
+        <button class="filter-btn" 
+                ng-click="peanut = !peanut" 
+                ng-class="{ 'selected' : peanut , 'notSelected' :  !peanut }">Peanut
+        </button>
+        <button class="filter-btn" 
+                ng-click="seafood = !seafood" 
+                ng-class="{ 'selected' : seafood , 'notSelected' :  !seafood }">Seafood
+        </button>
+        <button class="filter-btn" 
+                ng-click="sesame = !sesame"
+                ng-class="{ 'selected' : sesame , 'notSelected' :  !sesame }">Sesame
+        </button>
+        <button class="filter-btn" 
+                ng-click="soy = !soy"
+                ng-class="{ 'selected' : soy , 'notSelected' :  !soy }">Soy
+        </button>
+        <button class="filter-btn" 
+                ng-click="sulfite = !sulfite"
+                ng-class="{ 'selected' : sulfite , 'notSelected' :  !sulfite }">Sulfite
+        </button>
+        <button class="filter-btn" 
+                ng-click="treeNut = !treeNut"
+                ng-class="{ 'selected' : treeNut , 'notSelected' :  !treeNut }">Tree Nut
+        </button>
+        <button class="filter-btn" 
+                ng-click="wheat = !wheat"
+                ng-class="{ 'selected' : wheat , 'notSelected' :  !wheat }">Wheat
+        </button>
+      </div>
+
+      <h3 class="light-font text-center">Diet</h3>
+      <div class="center-div">
+        <button class="filter-btn" 
+                ng-click="pescetarian = !pescetarian"
+                ng-class="{ 'selected' : pescetarian , 'notSelected' :  !pescetarian }">Pescetarian
+        </button>
+        <button class="filter-btn" 
+                ng-click="vegan = !vegan"
+                ng-class="{ 'selected' : vegan , 'notSelected' :  !vegan }">Vegan
+        </button>
+        <button class="filter-btn" 
+                ng-click="vegetarian = !vegetarian"
+                ng-class="{ 'selected' : vegetarian , 'notSelected' :  !vegetarian }">Vegetarian
+        </button>
+        <button class="filter-btn" 
+                ng-click="paleo = !paleo"
+                ng-class="{ 'selected' : paleo , 'notSelected' :  !paleo }">Paleo
+        </button>
+      </div>
+      <h3 class="light-font text-center">Cuisine</h3>
+      <div class="center-div">
+        <button class="filter-btn" 
+                ng-click="american = !american" 
+                ng-class="{ 'selected' : american , 'notSelected' :  !american }">American
+        </button>
+        <button class="filter-btn" 
+                ng-click="italian = !italian" 
+                ng-class="{ 'selected' : italian , 'notSelected' :  !italian }">Italian
+        </button>
+        <button class="filter-btn" 
+                ng-click="asian = !asian"  
+                ng-class="{ 'selected' : asian , 'notSelected' :  !asian }">Asian
+        </button>
+        <button class="filter-btn" 
+                ng-click="mexican = !mexican" 
+                ng-class="{ 'selected' : mexican , 'notSelected' :  !mexican }">Mexican
+        </button>
+        <button class="filter-btn" 
+                ng-click="southern = !southern" 
+                ng-class="{ 'selected' : southern , 'notSelected' :  !southern }">Southern & Soul Food
+        </button>
+        <button class="filter-btn" 
+                ng-click="barbecue = !barbecue"
+                ng-class="{ 'selected' : barbecue , 'notSelected' :  !barbecue }">BBQ
+        </button>
+        <button class="filter-btn" 
+                ng-click="indian = !indian"
+                ng-class="{ 'selected' : indian , 'notSelected' :  !indian }">Indian
+        </button>
+        <button class="filter-btn" 
+                ng-click="mediterranean = !mediterranean"
+                ng-class="{ 'selected' : mediterranean , 'notSelected' :  !mediterranean }">Mediterranean
+        </button>
+        <button class="filter-btn" 
+                ng-click="moroccan = !moroccan"
+                ng-class="{ 'selected' : moroccan , 'notSelected' :  !moroccan }">Moroccan
+        </button>
+        <button class="filter-btn" 
+                ng-click="hawaiian = !hawaiian"
+                ng-class="{ 'selected' : hawaiian , 'notSelected' :  !hawaiian }">Hawaiian
+        </button>
+      </div>
+
+      <button class="search-btn" ng-click="searchRecipes();">Find Recipes</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- list of searched recipes -->
+<ul class="list-group" id="bottom">
+  <!-- Button trigger modal -->
+  <li class="list-group-item list-group-item-action" ng-repeat="recipe in recipes" ng-click="getRecipe(recipe)">
+    <div class="container list-hover" data-toggle="modal" data-target="#exampleModal">
+      <img class="inline-block result-img" src={{recipe.smallImageUrls[0]}}>
+      <h4 class="inline-block recipe-name">{{ recipe.recipeName }}</h4>
+      <span class="inline-block rating">{{ recipe.rating }} Star Rating</span>
+    </div>
+  </li>
+</ul>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="exampleModalLabel">{{ clickedRecipe.name }}</h3>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <img class="inline-block" src={{clickedRecipe.images[0].hostedLargeUrl}}>
+        <h5 class="cook-time">Total Cook Time: {{clickedRecipe.totalTime}}</h5>
+        <h3>Ingredients</h3>
+        <ul class="clicked-recipe-ingredients">
+          <li ng-repeat="item in clickedRecipe.ingredientLines track by $index">{{ item }}</li>
+        </ul>
+        <a href="{{clickedRecipe.source.sourceRecipeUrl}}" target="_blank">Click for recipe</a>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="close-btn" data-dismiss="modal">Close</button>
+        <button type="button" class="save-btn" ng-click="saveToMyRecipes(clickedRecipe)" data-dismiss="modal">Save to My Recipes</button>
+      </div>
+    </div>
+  </div>
+</div>

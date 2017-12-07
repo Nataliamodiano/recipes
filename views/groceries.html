@@ -1,0 +1,20 @@
+<div class="container">
+  <h1 class="text-center home-header groceries-header">Grocery List</h1>
+  <!-- add custom grocery -->
+  <div class="form-group">
+      <h2 class="add-item">Add Item</h2>
+      <input type="text" class="form-control search-input add-grocery-input" placeholder="Add grocery..." ng-model="groceryInput">
+      <button class="btn pull-right add-grocery-btn" ng-click="addCustomGrocery(groceryInput)">Add</button>
+    </div>
+</div>
+
+<!-- list of saved recipes -->
+<ul class="list-group grocery-list">
+  <!-- Button trigger modal -->
+  <li class="list-group-item list-group-item-action" ng-repeat="savedGrocery in savedGroceryArray track by $index">
+    <div class="container">
+      <h4 class="inline-block ingredient-name">{{ savedGrocery }}</h4>
+      <button class="delete-btn pull-right" ng-click="deleteGroceryItem(savedGrocery)">Delete</button>
+    </div>      
+  </li>
+</ul>

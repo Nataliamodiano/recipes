@@ -1,0 +1,61 @@
+<div class="container">
+  <h1 class="text-center home-header my-recipes-header">My Recipes</h1>
+  <!-- search -->
+  <div class="form-group">
+    <h2>Search My Recipes</h2>
+    <input type="text" class="form-control search-input search-my-recipes" placeholder="Search..." ng-model="searchRecipes">
+  </div>
+</div>
+
+<!-- list of saved recipes -->
+<ul class="list-group my-recipes-ul">
+  <!-- Button trigger modal -->
+  <li class="list-group-item list-group-item-action" ng-repeat="savedRecipe in savedRecipesArray | filter:searchRecipes track by $index" ng-click="getRecipe(savedRecipe)">
+    <div class="container">
+      <div data-toggle="modal" data-target="#exampleModal" class="modal-target">
+        <img class="inline-block result-img" src={{savedRecipe.images[0].hostedLargeUrl}}>
+        <h4 class="inline-block recipe-name">{{savedRecipe.name}}</h4>
+      </div>      
+
+      <button class="pull-right delete-my-recipe delete-btn" ng-click="deleteMyRecipe(savedRecipe)">Delete</button>
+    </div>
+  </li>
+</ul>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title" id="exampleModalLabel">{{ clickedRecipe.name }}</h3>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <img class="inline-block" src={{clickedRecipe.images[0].hostedLargeUrl}}>
+          <h5 class="cook-time">Total Cook Time: {{clickedRecipe.totalTime}}</h5>
+          <h3>Ingredients</h3>
+          <h5>Click to add ingredients to grocery list</h5>
+          <ul class="clicked-recipe-ingredients">
+            <li class="ingredient-item" ng-repeat="item in clickedRecipe.ingredientLines track by $index" 
+                ng-click="addToGroceryPage(item); ingredientClicked = !ingredientClicked"
+                ng-class="{ 'clicked' : ingredientClicked , 'notClicked' :  !ingredientClicked }">
+                {{ item }}
+            </li>
+          </ul>
+          <a href="{{clickedRecipe.source.sourceRecipeUrl}}" target="_blank">Click for recipe</a>
+          <hr>
+          <h5>Notes</h5>
+          <div class="collapse" id="collapseExample">
+            <textarea class="notes-textarea" rows="5" ng-model="clickedRecipe.notes"></textarea>
+          </div>
+          <button class="save-btn" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" ng-click="notesButton = !notesButton">{{toggleNotes}}</button>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="close-btn" data-dismiss="modal">Close</button>
+          <button type="button" class="save-btn" ng-click="saveRecipeNotes(clickedRecipe)" data-dismiss="modal">Save Notes</button>
+        </div>
+      </div>
+    </div>
+  </div>
