@@ -14,4 +14,4 @@ Built using:
 - Yummly API
 - Google Fonts API
 
-![Homepage Screenshot](./img/finalScreenshots/HomepageScreenshot.png)
+![HomepageScreenshot](img/finalScreenshots/HomepageScreenshot.png)
